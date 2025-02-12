@@ -1,6 +1,9 @@
 import { useState,useEffect } from 'react'
 import 'prismjs/themes/prism-tomorrow.css'
-import Editor from 'react-simple-code-editor' 
+import Editor from 'react-simple-code-editor'
+import Markdown from 'react-markdown' 
+import rehypeHighlight from 'rehype-highlight'
+import 'highlight.js/styles/github-dark.css'
 import prism from 'prismjs'
 import axios from 'axios'
 import './App.css'
@@ -43,7 +46,9 @@ function App() {
           <div onClick={reviewCode} className="review">Review</div>
         </div>
         <div className="right">
-          {review}
+          <Markdown
+            rehypePlugins={[rehypeHighlight]}
+          >{review}</Markdown>
         </div>
       </main>
     </>
